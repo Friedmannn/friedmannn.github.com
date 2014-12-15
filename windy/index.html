@@ -1,0 +1,40 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+   <title>今天的风儿有些喧嚣</title>
+
+<script language=javascript type="text/javascript">
+function west(){
+	var x = document.lingluan.input.value
+	var res = ''
+	for (var i = 0; i < x.length; i++){
+		res += x[i]
+		res += '\u035e\u0333\u035f\u035f='
+	}
+	document.lingluan.output.value = res
+}
+function east(){
+	var x = document.lingluan.input.value
+	var res = ''
+	for (var i = 0; i < x.length; i++){
+		res += '=\u035f\u035f\u035e\u035e'
+		res += x[i]
+	}
+	document.lingluan.output.value = res
+}</script>
+
+</head>
+
+<body>
+<h2>=̳͟͟͞今=̳͟͟͞天=̳͟͟͞的=̳͟͟͞风=̳͟͟͞儿=̳͟͟͞有=̳͟͟͞些=̳͟͟͞喧=̳͟͟͞嚣=̳͟͟͞啊</h2>
+
+<form name="lingluan" action="post">
+<textarea name=input rows="3" cols="200"></textarea>
+<input type=button value=西风 onClick="west()">
+<input type=button value=东风 onClick="east()">
+<textarea name=output rows="3" cols="200"></textarea>
+
+</form>
+
+</body>
+</html>
