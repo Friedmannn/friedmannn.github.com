@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Guitar Primer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+  <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script language=javascript type="text/javascript">
+  var state = 1;
+  var chinese = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二"];
+  var alphabets = ["C/1", "#C/#1", "D/2", "#D/#2", "E/3", "F/4", "#F/#4", "G/5", "#G/#5", "A/6", "#A/#6", "B/7"];
+
+  var strin = 0;
+  var fret = 0;
+
+  function state_forword(objButton){
+      if (state === 0){
+          state = 1;
+          strin = Math.floor(Math.random()*6);
+          fret = Math.floor(Math.random()*12);
+          var fret_str = chinese[strin] + "弦";
+          if (fret === 0){
+              fret_str += "空弦";
+          }
+          else{
+              fret_str += chinese[fret-1] + "品";
+          }
+          document.getElementById("fret").innerHTML = fret_str;
+          document.getElementById("alphabet").innerHTML = "[你猜]";
+          objButton.value = "显示答案";
+      }
+      else{
+          state = 0;
+          var real_fret;
+          if(strin === 0 || strin === 5){
+              real_fret = fret + 4;
+          }
+          else if(strin === 1){
+              real_fret = fret + 11;
+          }
+          else if(strin === 2){
+              real_fret = fret + 7;
+          }
+          else if(strin === 3){
+              real_fret = fret + 2;
+          }
+          else if(strin === 4){
+              real_fret = fret + 9;
+          }
+          document.getElementById("alphabet").innerHTML = alphabets[real_fret % 12];
+
+          value = 0;
+          objButton.value = "下一个";
+      }
+  }
+
+  </script>
+
+</head>
+
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <h3>
+                认音记音
+            </h3>
+        </div>
+    </div>
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						品位
+					</h3>
+				</div>
+				<div class="panel-body">
+                <p id="fret">
+                        一弦空弦
+                </p>
+				</div>
+			</div>
+		</div>
+    </div>
+    <div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						音名/唱名
+					</h3>
+				</div>
+				<div id="alphabet" class="panel-body">
+					    [你猜]
+				</div>
+			</div>
+		</div>
+        <div class="row clearfix">
+                <div class="col-md-6 column">
+                        <input type="button" name="andy_button" value="显示答案" onclick="state_forword(this)" class="btn btn-lg"></input>
+                </div>
+        </div>
+	</div>
+</div>
+</body>
+</html>
